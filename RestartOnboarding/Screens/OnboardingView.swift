@@ -12,6 +12,7 @@ struct OnboardingView: View {
     @AppStorage("isOnboarding") var isOnboarding: Bool = true
     @State private var buttonWidth: Double = UIScreen.main.bounds.width - 80
     @State private var buttonOffset: CGFloat = 0
+    @State private var isAnimating: Bool = false
     //MARK: - BODY
     var body: some View {
         ZStack {
@@ -30,15 +31,17 @@ struct OnboardingView: View {
                     
                     Text("""
                         It's not how much we give,
-                        but how much love we put in giving
+                        but how much love we put in giving.
                         """)
                     .font(.title3)
                     .fontWeight(.regular)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 10)
-                    
                 }//: Header VStack
+                .opacity(isAnimating ? 1 : 0)
+                .offset(y: isAnimating ? 0 : -40)
+                .animation(.easeOut(duration: 1), value: isAnimating)
                 
                 //MARK: Center
                 ZStack {
@@ -46,7 +49,10 @@ struct OnboardingView: View {
                     Image("character-1")
                         .resizable()
                         .scaledToFit()
+                        .opacity(isAnimating ? 1: 0)
+                        .animation(.easeOut(duration: 1.5), value: isAnimating)
                 }//:Center ZStack
+                .animation(.spring(), value: isAnimating)
                 Spacer()
                 
                 //MARK: Footer
@@ -92,11 +98,13 @@ struct OnboardingView: View {
                                     }
                                 })
                                 .onEnded({ _ in
-                                    if buttonOffset > buttonWidth / 2 {
-                                        buttonOffset = buttonWidth - 80
-                                        isOnboarding = false
-                                    } else {
-                                        buttonOffset = 0
+                                    withAnimation(Animation.easeOut(duration:  1)) {
+                                        if buttonOffset > buttonWidth / 2 {
+                                            buttonOffset = buttonWidth - 80
+                                            isOnboarding = false
+                                        } else {
+                                            buttonOffset = 0
+                                        }
                                     }
                                 })
                         )//:Gesture
@@ -105,8 +113,14 @@ struct OnboardingView: View {
                 }//:ZStack Footer
                 .frame(width: self.buttonWidth, height: 80, alignment: .center)
                 .padding()
+                .opacity(isAnimating ? 1: 0)
+                .offset(y: isAnimating ? 0 : 40)
+                .animation(.easeOut(duration: 1), value: isAnimating)
             }// :VStack
         }// :ZStack
+        .onAppear {
+            isAnimating = true
+        }
     }
 }
 
