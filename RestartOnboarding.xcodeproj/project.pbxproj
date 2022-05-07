@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C3C754AE2826731E0066B720 /* CircleGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C754AD2826731E0066B720 /* CircleGroupView.swift */; };
+		C3C754B0282689CE0066B720 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C754AF282689CE0066B720 /* AudioPlayer.swift */; };
 		C3D1165B28201B7E00C6F131 /* RestartOnboardingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D1165A28201B7E00C6F131 /* RestartOnboardingApp.swift */; };
 		C3D1165D28201B7E00C6F131 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D1165C28201B7E00C6F131 /* ContentView.swift */; };
 		C3D1165F28201B8000C6F131 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3D1165E28201B8000C6F131 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		C3C754AD2826731E0066B720 /* CircleGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGroupView.swift; sourceTree = "<group>"; };
+		C3C754AF282689CE0066B720 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		C3D1165728201B7E00C6F131 /* RestartOnboarding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestartOnboarding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3D1165A28201B7E00C6F131 /* RestartOnboardingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartOnboardingApp.swift; sourceTree = "<group>"; };
 		C3D1165C28201B7E00C6F131 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		C3D1166F28201E7200C6F131 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C3C754AF282689CE0066B720 /* AudioPlayer.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				C3D11675282020F500C6F131 /* HomeView.swift in Sources */,
 				C3D1165D28201B7E00C6F131 /* ContentView.swift in Sources */,
 				C3D1165B28201B7E00C6F131 /* RestartOnboardingApp.swift in Sources */,
+				C3C754B0282689CE0066B720 /* AudioPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
