@@ -10,7 +10,8 @@ import SwiftUI
 struct OnboardingView: View {
     //MARK: - Properties
     @AppStorage("isOnboarding") var isOnboarding: Bool = true
-    
+    @State private var buttonWidth: Double = UIScreen.main.bounds.width - 80
+    @State private var buttonOffset: CGFloat = 0
     //MARK: - BODY
     var body: some View {
         ZStack {
@@ -32,7 +33,7 @@ struct OnboardingView: View {
                         but how much love we put in giving
                         """)
                     .font(.title3)
-                    .fontWeight(.light)
+                    .fontWeight(.regular)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 10)
@@ -41,14 +42,7 @@ struct OnboardingView: View {
                 
                 //MARK: Center
                 ZStack {
-                    ZStack {
-                        Circle()
-                            .stroke(.white.opacity(0.2), lineWidth: 40)
-                            .frame(width: 260, height: 260, alignment: .center)
-                        Circle()
-                            .stroke(.white.opacity(0.2), lineWidth: 80)
-                            .frame(width: 260, height: 260, alignment: .center)
-                    }//:ZStack
+                    CircleGroupView(shapeColor: .white, shapeOpacity: 0.2)
                     Image("character-1")
                         .resizable()
                         .scaledToFit()
@@ -73,7 +67,7 @@ struct OnboardingView: View {
                     HStack {
                         Capsule()
                             .fill(Color("ColorRed"))
-                            .frame(width: 80)
+                            .frame(width: buttonOffset + 80)
                         Spacer()
                     }
                     
@@ -89,14 +83,27 @@ struct OnboardingView: View {
                         }
                         .foregroundColor(.white)
                         .frame(width: 80, height: 80, alignment: .center)
-                        .onTapGesture {
-                            isOnboarding = false
-                        }
+                        .offset(x: self.buttonOffset)
+                        .gesture(
+                            DragGesture()
+                                .onChanged({ gesture in
+                                    if gesture.translation.width > 0 && self.buttonOffset <= buttonWidth - 80 {
+                                        self.buttonOffset = gesture.translation.width
+                                    }
+                                })
+                                .onEnded({ _ in
+                                    if buttonOffset > buttonWidth / 2 {
+                                        buttonOffset = buttonWidth - 80
+                                        isOnboarding = false
+                                    } else {
+                                        buttonOffset = 0
+                                    }
+                                })
+                        )//:Gesture
                         Spacer()
                     }//:HStack
-                    
                 }//:ZStack Footer
-                .frame(height: 80, alignment: .center)
+                .frame(width: self.buttonWidth, height: 80, alignment: .center)
                 .padding()
             }// :VStack
         }// :ZStack

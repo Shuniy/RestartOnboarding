@@ -14,14 +14,39 @@ struct HomeView: View {
     //MARK: - Body
     var body: some View {
         VStack {
-            Text("Home View")
-                .font(.largeTitle)
+            //MARK: Header
+            Spacer()
+            ZStack {
+                CircleGroupView(shapeColor: .gray, shapeOpacity: 0.1)
+                Image("character-2")
+                    .resizable()
+                    .scaledToFit()
+                .padding()
+            }
+            
+            //MARK: Center
+            Text("The timethat leads to mastery is dependent on the intensity of our focus.")
+                .font(.title3)
+                .fontWeight(.regular)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .padding()
+            
+            //MARK: Footer
+            Spacer()
             
             Button {
                 isOnboarding = true
             } label: {
+                Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
+                    .imageScale(.large)
                 Text("Restart")
+                    .font(.system(.title3, design: .rounded))
+                    .fontWeight(.bold)
             }
+            .buttonStyle(.borderedProminent)
+            .buttonBorderShape(.capsule)
+            .controlSize(.large)
 
         }// :VStack
     }
